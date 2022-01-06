@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='ja'>
+  <head>
+    <title>Chat</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+  </head>
+  <body>
+    <div id='content'>
+      <!--現在のルーム名-->
+      <div id='room'></div>
+      <!--利用できるルーム名リスト-->
+      <div id='room-list'></div>
+      <!--チャットメッセージ-->
+      <div id='messages'></div>
+
+      <!--コマンド、メッセージ入力欄-->
+      <form id='send-form'>
+        <input id='send-message'>
+        <input id='send-button' type='submit' value='Send'>
+
+        <div id='help'>
+          Chat commands:
+          <ul>
+            <li>Change nickname: /nick [username]</li>
+            <li>Join/create room: /join [roomname]</li>
+          </ul>
+        </div>
+      </form>
+    </div>
+
+    <script src='/socket.io/socket.io.js'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src='/javascripts/chat.js'></script>
+    <script src='/javascripts/chat_ui.js'></script>
+  </body>
+</html>
