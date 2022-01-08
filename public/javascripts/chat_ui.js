@@ -60,7 +60,6 @@ $(document).ready(function(){
   socket.on('rooms', function(rooms){
     $('#room-list').empty();
     rooms.forEach(room => {
-      room = room.substring(1, room.length);
       if(room != ''){
         $('#room-list').append(divEscapedContentElement(room));
       }
