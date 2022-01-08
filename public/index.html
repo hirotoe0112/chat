@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang='ja'>
   <head>
+    <meta charset="UTF-8">
     <title>Chat</title>
     <link rel='stylesheet' href='/stylesheets/style.css'>
   </head>
@@ -14,18 +15,16 @@
       <div id='messages'></div>
 
       <!--コマンド、メッセージ入力欄-->
-      <form id='send-form'>
-        <input id='send-message'>
-        <input id='send-button' type='submit' value='Send'>
+      <input id='send-message'>
+      <button id='send-button'>Send</button>
 
-        <div id='help'>
-          Chat commands:
-          <ul>
-            <li>Change nickname: /nick [username]</li>
-            <li>Join/create room: /join [roomname]</li>
-          </ul>
-        </div>
-      </form>
+      <div id='help'>
+        Chat commands:
+        <ul>
+          <li>Change nickname: /nick [username]</li>
+          <li>Join/create room: /join [roomname]</li>
+        </ul>
+      </div>
     </div>
 
     <script src='/socket.io/socket.io.js'></script>
