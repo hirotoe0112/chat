@@ -1,3 +1,9 @@
+//バインドするデータ
+let vueObj = {
+  room: "",
+  sendMessage:""
+};
+
 //HTMLタグをエスケープして表示
 function divEscapedContentElement(message){
   return $('<div></div>').text(message);
@@ -10,7 +16,7 @@ function divSystemContentElement(message){
 
 //ユーザ入力の処理
 function processUserInput(chatApp, socket){
-  var message = $('#send-message').val();
+  var message = vueObj.sendMessage;
   var systemMessage;
 
   if(message.charAt(0) == '/'){
@@ -21,17 +27,40 @@ function processUserInput(chatApp, socket){
     }
   } else {
     //コマンド以外の場合はチャットメッセージとして送信
-    chatApp.sendMessage($('#room').text(), message);
+    chatApp.sendMessage(vueObj.room, message);
     $('#messages').append(divEscapedContentElement(message));
     $('#messages').scrollTop($('#messages').prop('scrollHeight'));
   }
-  $('#send-message').val('');
+  vueObj.sendMessage = "";
 }
 
 var socket = io.connect();
 
 $(document).ready(function(){
   var chatApp = new Chat(socket);
+
+  let app = new Vue({
+    el:'#content',
+    data:vueObj,
+    methods:{
+      send:function(event){
+        processUserInput(chatApp, socket);
+        this.focus();
+      },
+      enter:function(event){
+        if(event.keyCode == 13){
+          processUserInput(chatApp, socket);
+          this.focus();
+        }
+      },
+      focus:function(){
+        this.$refs.defaultFocus.focus();
+      }
+    },
+    mounted:function(){
+        this.$refs.defaultFocus.focus();
+    }
+  });
 
   //名前変更要求の結果を表示
   socket.on('nameResult', function(result){
@@ -46,7 +75,7 @@ $(document).ready(function(){
 
   //ルーム変更の結果を表示
   socket.on('joinResult', function(result){
-    $('#room').text(result.room);
+    vueObj.room = result.room;
     $('#messages').append(divSystemContentElement('Room changed.'));
   });
 
@@ -76,20 +105,4 @@ $(document).ready(function(){
   setInterval(function(){
     socket.emit('rooms');
   }, 1000);
-
-  //入力欄にフォーカス
-  $('#send-message').focus();
-
-  //入力ボタンを押したときの処理
-  $('#send-button').click(function(){
-    processUserInput(chatApp, socket);
-    return false;
-  });
-
-  $('#send-message').keypress(function(e){
-    if(e.keyCode == 13){
-    processUserInput(chatApp, socket);
-    return false;
-    }
-  })
 });

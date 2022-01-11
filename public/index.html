@@ -8,15 +8,15 @@
   <body>
     <div id='content'>
       <!--現在のルーム名-->
-      <div id='room'></div>
+      <div>{{ room }}</div>
       <!--利用できるルーム名リスト-->
       <div id='room-list'></div>
       <!--チャットメッセージ-->
       <div id='messages'></div>
 
       <!--コマンド、メッセージ入力欄-->
-      <input id='send-message'>
-      <button id='send-button'>Send</button>
+      <input @keypress="enter" v-model="sendMessage" ref="defaultFocus">
+      <button @click="send">Send</button>
 
       <div id='help'>
         Chat commands:
@@ -29,6 +29,7 @@
 
     <script src='/socket.io/socket.io.js'></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script src='/javascripts/chat.js'></script>
     <script src='/javascripts/chat_ui.js'></script>
   </body>
