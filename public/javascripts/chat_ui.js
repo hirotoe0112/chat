@@ -25,7 +25,7 @@ let app = new Vue({
       }
     },
     changeroom:function(event){
-      chatApp.processCommand('/join ' + event.target.innerText);
+      chatApp.processCommand('/r ' + event.target.innerText);
       this.focus();
     },
     focus:function(){
@@ -76,7 +76,7 @@ function processUserInput(chatApp, socket){
 socket.on('nameResult', function(result){
   var message;
   if(result.success){
-    message = 'You are now known as ' + result.name + '.';
+    message = '名前を変更しました。現在の名前：' + result.name + '.';
   } else {
     message = result.message;
   }
@@ -86,7 +86,7 @@ socket.on('nameResult', function(result){
 //ルーム変更の結果を表示
 socket.on('joinResult', function(result){
   vueObj.room = result.room;
-  addMessage('Room changed', true, false);
+  addMessage('部屋を移動しました。', true, false);
 });
 
 //受信したメッセージを表示

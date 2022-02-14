@@ -26,19 +26,19 @@ class Chat{
     var command = words[0].substring(1, words[0].length).toLowerCase();
     var message = false;
     switch(command){
-      case 'join':
+      case 'r':
         //配列の最初の要素を削除
         words.shift();
         var room = words.join(' ');
         this.changeRoom(room);
         break;
-      case 'nick':
+      case 'n':
         words.shift();
         var name = words.join(' ');
         this.socket.emit('nameAttempt', name);
         break;
       default:
-        message = 'Unrecognized command';
+        message = '不明なコマンドです。';
     }
     return message;
   }
