@@ -7,6 +7,10 @@ a{
   color: #00b7ff;
 }
 
+:focus{
+  outline:none;
+}
+
 #content{
   width: 800px;
   margin:0 auto;
@@ -17,8 +21,34 @@ a{
   margin-bottom: 1em;
 }
 
-#messages{
-  width: 690px;
+.roomName{
+  font-size: 1.4em;
+  font-weight: bold;
+  border-left: 5px solid #696969;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.roomList{
+  text-decoration: underline;
+  line-height: 1.5;
+}
+
+.roomList:hover{
+  cursor: pointer;
+  background-color:#ddd;
+}
+
+.systemMessage{
+  color:#696969;
+  font-style: italic;
+}
+
+.selfMessage{
+  color:#0000ff;
+}
+
+.messages{
   height: 300px;
   overflow: auto;
   background-color: #eee;
@@ -26,28 +56,12 @@ a{
   margin-right: 10px;
 }
 
-#room-list{
-  float:right;
-  width:100px;
-  height:300px;
-  overflow: auto;
-}
-
-#room-list div{
-  border-bottom:1px solid #eee;
-}
-
-#room-list div:hover{
-  background-color:#ddd;
-  cursor: pointer;
-}
-
-#send-message{
+.inputMessage{
   width: 700px;
   margin-bottom: 1em;
   margin-right: 1em;
 }
 
-#help{
-  font-size:10px;
+.help{
+  font-size:0.5em;
 }
