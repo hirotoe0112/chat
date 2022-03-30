@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 var socket = io.connect('http://localhost:3000');
-=======
-var socket = io.connect();
->>>>>>> d7b8b5dde445c83681f602e40c594d9af4afc14a
 var chatApp = new Chat(socket);
 
 //バインドするデータ
@@ -29,11 +25,7 @@ let app = new Vue({
       }
     },
     changeroom:function(event){
-<<<<<<< HEAD
       chatApp.processCommand('/r ' + event.target.innerText);
-=======
-      chatApp.processCommand('/join ' + event.target.innerText);
->>>>>>> d7b8b5dde445c83681f602e40c594d9af4afc14a
       this.focus();
     },
     focus:function(){
@@ -84,11 +76,7 @@ function processUserInput(chatApp, socket){
 socket.on('nameResult', function(result){
   var message;
   if(result.success){
-<<<<<<< HEAD
     message = '名前を変更しました。現在の名前：' + result.name + '.';
-=======
-    message = 'You are now known as ' + result.name + '.';
->>>>>>> d7b8b5dde445c83681f602e40c594d9af4afc14a
   } else {
     message = result.message;
   }
@@ -98,11 +86,7 @@ socket.on('nameResult', function(result){
 //ルーム変更の結果を表示
 socket.on('joinResult', function(result){
   vueObj.room = result.room;
-<<<<<<< HEAD
   addMessage('部屋を移動しました。', true, false);
-=======
-  addMessage('Room changed', true, false);
->>>>>>> d7b8b5dde445c83681f602e40c594d9af4afc14a
 });
 
 //受信したメッセージを表示
